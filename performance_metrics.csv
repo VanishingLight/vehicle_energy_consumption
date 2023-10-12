@@ -1,0 +1,15 @@
+Model,RMSE,MAE,MAPE
+RNN,0.4491,0.2265,0.4530
+GRU,0.453, 0.232,0.478
+LSTM,0.452.0.232,0.424
+DCNN,0.4189,0.2094,0.5532
+RESNET_BILSTM,0.4687,0.2420,0.3985
+VIT,0.4479,0.2254,0.4503
+CVT,0.412,0.19,0.39
+
+RVT (without vehicle and holiday info),0.39,0.16,0.28
+
+RVT (with vehicle info - separate embedding layer inputs)*,0.388,0.127,0.339
+RVT(with vehicle info - embedding categorical data and passed all to RVT),0.403,0.144,0.244
+
+RVT(with vehicle* and holiday info) - 0.42,0.16,0.34

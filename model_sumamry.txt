@@ -1,0 +1,47 @@
+Model: "model"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ input_1 (InputLayer)           [(None, 955, 12, 2)  0           []                               
+                                ]                                                                 
+                                                                                                  
+ input_2 (InputLayer)           [(None, 955, 5)]     0           []                               
+                                                                                                  
+ lookup (Lookup)                (1, 955, 5, 12, 2)   0           ['input_1[0][0]',                
+                                                                  'input_2[0][0]']                
+                                                                                                  
+ conv3d (Conv3D)                (1, 955, 1, 11, 16)  336         ['lookup[0][0]']                 
+                                                                                                  
+ look_up_squeeze (LookUpSqueeze  (1, 955, 11, 16)    0           ['conv3d[0][0]']                 
+ )                                                                                                
+                                                                                                  
+ lookup_1 (Lookup)              (1, 955, 5, 11, 16)  0           ['look_up_squeeze[0][0]',        
+                                                                  'input_2[0][0]']                
+                                                                                                  
+ conv3d_1 (Conv3D)              (1, 955, 1, 10, 16)  2576        ['lookup_1[0][0]']               
+                                                                                                  
+ look_up_squeeze_1 (LookUpSquee  (1, 955, 10, 16)    0           ['conv3d_1[0][0]']               
+ ze)                                                                                              
+                                                                                                  
+ lookup_2 (Lookup)              (1, 955, 5, 10, 16)  0           ['look_up_squeeze_1[0][0]',      
+                                                                  'input_2[0][0]']                
+                                                                                                  
+ conv3d_2 (Conv3D)              (1, 955, 1, 9, 16)   2576        ['lookup_2[0][0]']               
+                                                                                                  
+ look_up_squeeze_2 (LookUpSquee  (1, 955, 9, 16)     0           ['conv3d_2[0][0]']               
+ ze)                                                                                              
+                                                                                                  
+ my_reshape (MyReshape)         (955, 9, 16)         0           ['look_up_squeeze_2[0][0]']      
+                                                                                                  
+ simple_rnn (SimpleRNN)         (955, 5)             110         ['my_reshape[0][0]']             
+                                                                                                  
+ dense (Dense)                  (955, 1)             6           ['simple_rnn[0][0]']             
+                                                                                                  
+ my_inverse_reshape2 (MyInverse  (1, 954, 1)         0           ['dense[0][0]']                  
+ Reshape2)                                                                                        
+                                                                                                  
+==================================================================================================
+Total params: 5,604
+Trainable params: 5,604
+Non-trainable params: 0
+__________________________________________________________________________________________________
